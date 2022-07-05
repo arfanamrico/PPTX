@@ -1,0 +1,18 @@
+import collections.abc #untuk versi python 3.10 harus import abc dulu sebelum import pptx
+from pptx import Presentation
+import os
+
+pr1 = Presentation()
+#membuat slide
+layout = pr1.slide_layouts[0] #memilih jenis layout yg tersedia yaitu 0 sampai seterus nya
+slide1 = pr1.slides.add_slide(layout) #add initial slide to presentation
+
+#membuat judul dan sub judul
+judul = slide1.shapes.title
+subjudul = slide1.placeholders[1]
+
+judul.text = "bekerja di powerpoint melalui python"
+subjudul.text = "mari kita mulai belajar"
+
+pr1.save('test.pptx')
+os.startfile('test.pptx')
