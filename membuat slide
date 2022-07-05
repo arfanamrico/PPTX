@@ -1,0 +1,14 @@
+import collections.abc #untuk versi python 3.10 harus import abc dulu sebelum import pptx
+from pptx import Presentation
+import os
+
+pr1 = Presentation()
+#membuat slide
+layout = pr1.slide_layouts[0] #memilih jenis layout yg tersedia yaitu 0 sampai seterus nya
+slide1 = pr1.slides.add_slide(layout) #add initial slide to presentation
+#membuat slide ke2
+slide2_register = pr1.slide_layouts[8] #memilih jenis layout yg tersedia yaitu 0 sampai seterus nya
+slide2 = pr1.slides.add_slide(slide2_register) #add initial slide to presentation
+
+pr1.save('test.pptx') #menyimpan dan memberi nama file pptx
+os.startfile('test.pptx') #membuka file pptx
