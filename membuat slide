@@ -12,3 +12,7 @@ slide2 = pr1.slides.add_slide(slide2_register) #add initial slide to presentatio
 
 pr1.save('test.pptx') #menyimpan dan memberi nama file pptx
 os.startfile('test.pptx') #membuka file pptx
+
+
+referensi link belajar
+https://python-pptx.readthedocs.io/en/latest/user/quickstart.html
