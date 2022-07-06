@@ -1,0 +1,31 @@
+import collections.abc
+from turtle import left, right
+from pptx import Presentation
+from pptx.util import Inches
+from pptx.enum.shapes import MSO_SHAPE
+import os
+
+pr1 = Presentation()
+
+img_path = 'panoramic #N0165_0701R (1).jpeg'
+blank_slide_layout = pr1.slide_layouts[6]
+slide = pr1.slides.add_slide(blank_slide_layout)
+
+left = Inches(0.36)
+top = Inches(1.25)
+width = Inches(2.97)
+height = Inches(2.39)
+pic = slide.shapes.add_picture(img_path, left, top, width, height)
+
+width = Inches(2.97)
+height = Inches(2.39)
+middle = Inches(3.51)
+pic = slide.shapes.add_picture(img_path, middle, top, width, height)
+
+width = Inches(2.97)
+height = Inches(2.39)
+right = Inches(6.68)
+pic = slide.shapes.add_picture(img_path, right, top, width, height)
+
+pr1.save('test.pptx')
+os.startfile('test.pptx')
