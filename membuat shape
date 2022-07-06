@@ -1,0 +1,33 @@
+import collections.abc
+from turtle import left, right
+from pptx import Presentation
+from pptx.util import Inches
+from pptx.enum.shapes import MSO_SHAPE
+import os
+
+pr1 = Presentation()
+
+layout = pr1.slide_layouts[5]
+slide1 = pr1.slides.add_slide(layout)
+
+title = slide1.shapes.title
+title.text = 'Ini adalah slide satu'
+
+left = Inches(0.36)
+middle = Inches(3.51)
+right = Inches(6.68)
+top = Inches(1.25)
+bottom = Inches(4.1)
+width = Inches(2.97)
+height = Inches(2.39)
+#shape atas
+shape1 = slide1.shapes.add_shape(MSO_SHAPE.RECTANGLE, left, top, width, height)
+shape2 = slide1.shapes.add_shape(MSO_SHAPE.RECTANGLE, middle, top, width, height)
+shape3 = slide1.shapes.add_shape(MSO_SHAPE.RECTANGLE, right, top, width, height)
+#shape bawah
+shape4 = slide1.shapes.add_shape(MSO_SHAPE.RECTANGLE, left, bottom, width, height)
+shape5 = slide1.shapes.add_shape(MSO_SHAPE.RECTANGLE, middle, bottom, width, height)
+shape6 = slide1.shapes.add_shape(MSO_SHAPE.RECTANGLE, right, bottom, width, height)
+
+pr1.save('test.pptx')
+os.startfile('test.pptx')
