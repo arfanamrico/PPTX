@@ -13,13 +13,13 @@ slide1 = pr1.slides.add_slide(layout)
 title = slide1.shapes.title
 title.text = 'Ini adalah slide satu'
 
-left = Inches(0.36)
-middle = Inches(3.51)
-right = Inches(6.68)
-top = Inches(1.25)
-bottom = Inches(4.1)
-width = Inches(2.97)
-height = Inches(2.39)
+left = Inches(0.36) #mengatur jarak posisi/letak shape dari margin kiri (letak shape kiri)
+middle = Inches(3.51) #mengatur jarak posisi/letak shape dari margin kiri (letak shape tengah)
+right = Inches(6.68) #mengatur jarak posisi/letak shape dari margin kiri (letak shape kanan)
+top = Inches(1.25) #mengatur jarak posisi/letak shape dari margin atas (letak shape atas)
+bottom = Inches(4.1) #mengatur jarak posisi/letak shape dari margin atas (letak shape bawah)
+width = Inches(2.97) #mengatur ukuran lebar shape
+height = Inches(2.39) #mengatur ukuran tinggi shape
 #shape atas
 shape1 = slide1.shapes.add_shape(MSO_SHAPE.RECTANGLE, left, top, width, height)
 shape2 = slide1.shapes.add_shape(MSO_SHAPE.RECTANGLE, middle, top, width, height)
