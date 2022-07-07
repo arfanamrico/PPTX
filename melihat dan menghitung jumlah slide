@@ -1,0 +1,16 @@
+import collections.abc
+from turtle import left, right
+from pptx import Presentation
+from pptx.util import Inches, Pt
+from pptx.enum.shapes import MSO_SHAPE
+import os
+
+data = "Thm_Audit.pptx"
+pr1 = Presentation(data)
+slide = pr1
+sl = 0
+for i in pr1.slides:
+    print(f'slide {sl}')
+    for shape in i.placeholders: 
+        print('\t','%d %s' % (shape.placeholder_format.idx, shape.name))
+    sl += 1
