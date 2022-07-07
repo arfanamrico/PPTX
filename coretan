@@ -1,0 +1,96 @@
+import collections.abc
+from turtle import Shape, left, right
+from pptx import Presentation
+from pptx.util import Inches, Pt
+from pptx.enum.shapes import MSO_SHAPE
+import os
+
+img = 'panoramic #N0165_0701R (1).jpeg' 
+data = "Thm_Audit.pptx"
+pr1 = Presentation(data)
+slide = pr1
+
+def gearth():
+    width = Inches(6.67)
+    height = Inches(5.43)
+    left = Inches(0.28)
+    top = Inches(1.03)
+    pic = slide.shapes.add_picture(img, left, top, width, height)
+
+for i in range(len(pr1.slides)):
+    if i == 3:     
+        print(f'slide {i}')   
+        gearth()
+    else:
+        print(f'slide {i}')
+
+
+os.startfile('Thm_Audit.pptx')
+
+''' shape.placeholder_format.idx, 
+img_path = 'panoramic #N0165_0701R (1).jpeg'
+blank_slide_layout = pr1.slide_layouts[6]
+slide = pr1.slides.add_slide(blank_slide_layout)
+
+width_text = Inches(8.47)
+height_text = Inches(0.95)
+left_text = Inches(0.11)
+top_text = Inches(0)
+left = Inches(0.36)
+bottom = Inches(4.1)
+width = Inches(2.97)
+height = Inches(2.39)
+top = Inches(1.25)
+#add textbox
+texbok = slide.shapes.add_textbox(left_text, top_text, width_text, height_text)
+tf = texbok.text_frame
+p = tf.add_paragraph()
+p.font.bold = True
+p.font.size = Pt(28)
+p.text = 'Panoramic'
+# add picture
+pic = slide.shapes.add_picture(img_path, left, bottom, width, height)
+
+width = Inches(2.97)
+height = Inches(2.39)
+middle = Inches(3.51)
+pic = slide.shapes.add_picture(img_path, middle, bottom, width, height)
+
+width = Inches(2.97)
+height = Inches(2.39)
+right = Inches(6.68)
+pic = slide.shapes.add_picture(img_path, right, bottom, width, height)
+'''
+'''
+layout = pr1.slide_layouts[8]
+slide1 = pr1.slides.add_slide(layout)
+
+placeholder = slide1.placeholders[1]
+picture = placeholder.insert_picture('panoramic #N0165_0701R (1).jpeg')
+'''
+'''
+title = slide1.shapes.title
+title.text = 'Ini adalah slide satu'
+
+left = Inches(0.36)
+middle = Inches(3.51)
+right = Inches(6.68)
+top = Inches(1.25)
+bottom = Inches(4.1)
+width = Inches(2.97)
+height = Inches(2.39)
+#shape atas
+shape1 = slide1.shapes.add_shape(MSO_SHAPE.RECTANGLE, left, top, width, height)
+shape2 = slide1.shapes.add_shape(MSO_SHAPE.RECTANGLE, middle, top, width, height)
+shape3 = slide1.shapes.add_shape(MSO_SHAPE.RECTANGLE, right, top, width, height)
+#shape bawah
+shape4 = slide1.shapes.add_shape(MSO_SHAPE.RECTANGLE, left, bottom, width, height)
+shape5 = slide1.shapes.add_shape(MSO_SHAPE.RECTANGLE, middle, bottom, width, height)
+shape6 = slide1.shapes.add_shape(MSO_SHAPE.RECTANGLE, right, bottom, width, height)
+
+slide1.insert_picture('panoramic #N0165_0701R (1).jpg')
+'''
+'''
+pr1.save('test.pptx')
+os.startfile('test.pptx')
+'''
