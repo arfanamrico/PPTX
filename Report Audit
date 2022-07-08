@@ -1,0 +1,128 @@
+import collections.abc
+from pptx import Presentation
+from pptx.util import Inches, Pt
+from pptx.enum.shapes import MSO_SHAPE
+import os
+
+pr1 = Presentation()
+blank_slide_layout = pr1.slide_layouts[6]
+slide1 = pr1.slides.add_slide(blank_slide_layout)
+
+slide2 = pr1.slides.add_slide(blank_slide_layout)
+
+slide3 = pr1.slides.add_slide(blank_slide_layout)
+
+slide4 = pr1.slides.add_slide(blank_slide_layout)
+img = 'panoramic #N0165_0701R (1).jpeg'
+width = Inches(6.67)
+height = Inches(5.43)
+left = Inches(0.28)
+top = Inches(1.03)
+pic = slide4.shapes.add_picture(img, left, top, width, height)
+
+slide5 = pr1.slides.add_slide(blank_slide_layout)
+
+slide6 = pr1.slides.add_slide(blank_slide_layout)
+left = Inches(0.36)
+top = Inches(1.25)
+middle = Inches(3.51)
+bottom = Inches(4.1)
+right = Inches(6.68)
+width = Inches(2.97)
+height = Inches(2.39)
+# baris atas
+pic = slide6.shapes.add_picture(img, left, top, width, height)
+pic = slide6.shapes.add_picture(img, middle, top, width, height)
+pic = slide6.shapes.add_picture(img, right, top, width, height)
+# baris bawah
+pic = slide6.shapes.add_picture(img, left, bottom, width, height)
+pic = slide6.shapes.add_picture(img, middle, bottom, width, height)
+pic = slide6.shapes.add_picture(img, right, bottom, width, height)
+
+slide7 = pr1.slides.add_slide(blank_slide_layout)
+left = Inches(0.36)
+top = Inches(1.25)
+middle = Inches(3.51)
+bottom = Inches(4.1)
+right = Inches(6.68)
+width = Inches(2.97)
+height = Inches(2.39)
+# baris atas
+pic = slide7.shapes.add_picture(img, left, top, width, height)
+pic = slide7.shapes.add_picture(img, middle, top, width, height)
+pic = slide7.shapes.add_picture(img, right, top, width, height)
+# baris bawah
+pic = slide7.shapes.add_picture(img, left, bottom, width, height)
+pic = slide7.shapes.add_picture(img, middle, bottom, width, height)
+pic = slide7.shapes.add_picture(img, right, bottom, width, height)
+
+slide8 = pr1.slides.add_slide(blank_slide_layout)
+left = Inches(0.36)
+top = Inches(1.25)
+middle = Inches(3.51)
+bottom = Inches(4.1)
+right = Inches(6.68)
+width = Inches(2.97)
+height = Inches(2.39)
+# baris atas
+pic = slide8.shapes.add_picture(img, left, top, width, height)
+pic = slide8.shapes.add_picture(img, middle, top, width, height)
+pic = slide8.shapes.add_picture(img, right, top, width, height)
+# baris bawah
+pic = slide8.shapes.add_picture(img, left, bottom, width, height)
+pic = slide8.shapes.add_picture(img, middle, bottom, width, height)
+pic = slide8.shapes.add_picture(img, right, bottom, width, height)
+
+slide9 = pr1.slides.add_slide(blank_slide_layout)
+left = Inches(0.36)
+top = Inches(1.25)
+middle = Inches(3.51)
+bottom = Inches(4.1)
+right = Inches(6.68)
+width = Inches(2.97)
+height = Inches(2.39)
+# baris atas
+pic = slide9.shapes.add_picture(img, left, top, width, height)
+pic = slide9.shapes.add_picture(img, middle, top, width, height)
+pic = slide9.shapes.add_picture(img, right, top, width, height)
+# baris bawah
+pic = slide9.shapes.add_picture(img, left, bottom, width, height)
+pic = slide9.shapes.add_picture(img, middle, bottom, width, height)
+pic = slide9.shapes.add_picture(img, right, bottom, width, height)
+
+slide10 = pr1.slides.add_slide(blank_slide_layout)
+left = Inches(0.36)
+top = Inches(1.25)
+middle = Inches(3.51)
+bottom = Inches(4.1)
+right = Inches(6.68)
+width = Inches(2.97)
+height = Inches(2.39)
+# baris atas
+pic = slide10.shapes.add_picture(img, left, top, width, height)
+pic = slide10.shapes.add_picture(img, middle, top, width, height)
+pic = slide10.shapes.add_picture(img, right, top, width, height)
+# baris bawah
+pic = slide10.shapes.add_picture(img, left, bottom, width, height)
+pic = slide10.shapes.add_picture(img, middle, bottom, width, height)
+pic = slide10.shapes.add_picture(img, right, bottom, width, height)
+
+slide11 = pr1.slides.add_slide(blank_slide_layout)
+left = Inches(0.36)
+top = Inches(1.25)
+middle = Inches(3.51)
+right = Inches(6.68)
+width = Inches(2.97)
+height = Inches(2.39)
+# baris atas
+pic = slide11.shapes.add_picture(img, left, top, width, height)
+pic = slide11.shapes.add_picture(img, middle, top, width, height)
+pic = slide11.shapes.add_picture(img, right, top, width, height)
+
+slide12 = pr1.slides.add_slide(blank_slide_layout)
+
+slide13 = pr1.slides.add_slide(blank_slide_layout)
+
+
+pr1.save('test.pptx')
+os.startfile('test.pptx')
