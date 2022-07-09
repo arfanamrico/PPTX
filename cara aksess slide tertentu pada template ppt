@@ -1,0 +1,9 @@
+img = 'panoramic #N0165_0701R (1).jpeg'
+width = Inches(6.67)
+height = Inches(5.43)
+left = Inches(0.28)
+top = Inches(1.03)
+pic = pr1.slides[2].shapes.add_picture(img, left, top, width, height)
+
+note:
+pr1.slides[2] ===> menuju slide tertentu pada template ppt
