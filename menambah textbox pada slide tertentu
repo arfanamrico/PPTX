@@ -1,2 +1,59 @@
-tb = slide3.shapes.add_textbox(left,top,width,height)
-tb.text = 'ini adalah tempat text'
+import collections.abc
+from tkinter import font
+from pptx import Presentation
+from pptx.util import Inches, Pt
+from pptx.enum.shapes import MSO_SHAPE
+from pptx.dml.color import RGBColor
+import os
+
+pr1 = Presentation('test.pptx')
+
+left = Inches(0.25)
+top = Inches(1.5)
+width = Inches(9.75)
+height = Inches(3)
+tb = pr1.slides[1].shapes.add_textbox(left,top,width,height)
+#tb.text = "Site ID : 32332"
+tf = tb.text_frame
+p_0 = tf.paragraphs[0]
+run_p_0 = p_0.add_run()
+run_p_0.text = "Site ID : 32332"
+font_p_0 = run_p_0.font
+font_p_0.size = Pt(24)
+font_p_0.name = 'arial'
+font_p_0.bold = True
+font_p_0.color.rgb = RGBColor(255,0,0)
+
+p_1 = tf.add_paragraph()
+run_p_1 = p_1.add_run()
+run_p_1.text = "Site Name : Gunung Pangilun 4"
+font_p_1 = run_p_1.font
+font_p_1.size = Pt(24)
+font_p_1.name = 'arial'
+font_p_1.bold = True
+font_p_1.color.rgb = RGBColor(255,0,0)
+
+p_2 = tf.add_paragraph()
+run_p_2 = p_2.add_run()
+run_p_2.text = ""
+
+p_3 = tf.add_paragraph()
+run_p_3 = p_3.add_run()
+run_p_3.text = "Region : Central Sumatera"
+font_p_3 = run_p_3.font
+font_p_3.size = Pt(24)
+font_p_3.name = 'arial'
+font_p_3.bold = True
+font_p_3.color.rgb = RGBColor(255,0,0)
+
+p_4 = tf.add_paragraph()
+run_p_4 = p_4.add_run()
+run_p_4.text = "Last Update : 6/14/2022"
+font_p_4 = run_p_4.font
+font_p_4.size = Pt(24)
+font_p_4.name = 'arial'
+font_p_4.bold = True
+font_p_4.color.rgb = RGBColor(255,0,0)
+
+pr1.save('test.pptx')
+os.startfile('test.pptx')
