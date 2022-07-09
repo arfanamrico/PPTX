@@ -1,0 +1,145 @@
+import collections.abc
+from pptx import Presentation
+from pptx.util import Inches, Pt
+from pptx.enum.shapes import MSO_SHAPE
+from pptx.dml.color import RGBColor
+import os
+
+path = r"E:\FOTO AUDIT_AOR\Rivai\GCI Mocn\03PDN0052 Padang Barat"
+pr1 = Presentation('Thm_Audit.pptx')
+#===Nama-nama foto============
+panoramic = ["0.jpg","30.jpg","60.jpg","90.jpg","120.jpg","150.jpg","180.jpg","210.jpg","240.jpg","270.jpg","300.jpg","330.jpg"]
+ant = ["Antenna SEC 1.jpg","Antenna SEC 2.jpg","Antenna SEC 3.jpg"]
+lblant = ["Antenna Label SEC 1.jpg","Antenna Label SEC 2.jpg","Antenna Label SEC 3.jpg"]
+azz = ["SEC 1 View No Compas.jpg","SEC 2 View No Compas.jpg","SEC 3 View No Compas.jpg"]
+azz_co = ["SEC 1 View.jpg","SEC 2 View.jpg","SEC 3 View.jpg"]
+mdt = ["M-Tilt SEC 1.jpg","M-Tilt SEC 2.jpg","M-Tilt SEC 3.jpg"]
+edt = ["E-Tilt SEC 1.jpg","E-Tilt SEC 2.jpg","E-Tilt SEC 3.jpg"]
+h_ant = ["High Ant Sec 1.jpg","High Ant Sec 2.jpg","High Ant Sec 3.jpg"]
+site_con = ["Site Far View.jpg","Site Near View.jpg","Equip Room.jpg","GPS.jpg","Feeder Inlet.jpg"]
+#===Posisition and Size picture ========
+left = Inches(0.33)
+top = Inches(1.23)
+middle = Inches(3.5)
+bottom = Inches(4.08)
+right = Inches(6.67)
+width = Inches(3)
+height = Inches(2.42)
+#===judul========
+leftj = Inches(0.25)
+topj = Inches(1.5)
+widthj = Inches(9.75)
+heightj = Inches(3)
+tb = pr1.slides[0].shapes.add_textbox(leftj,topj,widthj,heightj)
+#tb.text = "Site ID : 32332"
+tf = tb.text_frame
+p_0 = tf.paragraphs[0]
+run_p_0 = p_0.add_run()
+run_p_0.text = "Site ID          : 32332"
+font_p_0 = run_p_0.font
+font_p_0.size = Pt(24)
+font_p_0.name = 'arial'
+font_p_0.bold = True
+font_p_0.color.rgb = RGBColor(192,0,0)
+
+p_1 = tf.add_paragraph()
+run_p_1 = p_1.add_run()
+run_p_1.text = "Site Name    : Gunung Pangilun 4"
+font_p_1 = run_p_1.font
+font_p_1.size = Pt(24)
+font_p_1.name = 'arial'
+font_p_1.bold = True
+font_p_1.color.rgb = RGBColor(192,0,0)
+
+p_2 = tf.add_paragraph()
+run_p_2 = p_2.add_run()
+run_p_2.text = ""
+
+p_3 = tf.add_paragraph()
+run_p_3 = p_3.add_run()
+run_p_3.text = "Region          : Central Sumatera"
+font_p_3 = run_p_3.font
+font_p_3.size = Pt(24)
+font_p_3.name = 'arial'
+font_p_3.bold = True
+font_p_3.color.rgb = RGBColor(192,0,0)
+
+p_4 = tf.add_paragraph()
+run_p_4 = p_4.add_run()
+run_p_4.text = "Last Update : 6/14/2022"
+font_p_4 = run_p_4.font
+font_p_4.size = Pt(24)
+font_p_4.name = 'arial'
+font_p_4.bold = True
+font_p_4.color.rgb = RGBColor(192,0,0)
+#=====google earth======
+nama = "Google Earth.jpg"
+img = f'{path}/{nama}'
+widthg = Inches(6.67)
+heightg = Inches(5.43)
+leftg = Inches(0.28)
+topg = Inches(1.03)
+pic = pr1.slides[3].shapes.add_picture(img, leftg, topg, widthg, heightg)
+#========panoramic 0 30 60 90 120 150 ==============
+#baris atas
+pic = pr1.slides[5].shapes.add_picture(f'{path}/{panoramic[0]}', left, top, width, height)
+pic = pr1.slides[5].shapes.add_picture(f'{path}/{panoramic[1]}', middle, top, width, height)
+pic = pr1.slides[5].shapes.add_picture(f'{path}/{panoramic[2]}', right, top, width, height)
+#baris bawah
+pic = pr1.slides[5].shapes.add_picture(f'{path}/{panoramic[3]}', left, bottom, width, height)
+pic = pr1.slides[5].shapes.add_picture(f'{path}/{panoramic[4]}', middle, bottom, width, height)
+pic = pr1.slides[5].shapes.add_picture(f'{path}/{panoramic[5]}', right, bottom, width, height)
+#========panoramic 180 210 240 270 300 330 ==============
+#baris atas
+pic = pr1.slides[6].shapes.add_picture(f'{path}/{panoramic[6]}', left, top, width, height)
+pic = pr1.slides[6].shapes.add_picture(f'{path}/{panoramic[7]}', middle, top, width, height)
+pic = pr1.slides[6].shapes.add_picture(f'{path}/{panoramic[8]}', right, top, width, height)
+#baris bawah
+pic = pr1.slides[6].shapes.add_picture(f'{path}/{panoramic[9]}', left, bottom, width, height)
+pic = pr1.slides[6].shapes.add_picture(f'{path}/{panoramic[10]}', middle, bottom, width, height)
+pic = pr1.slides[6].shapes.add_picture(f'{path}/{panoramic[11]}', right, bottom, width, height)
+#========antenna dan antenna lable ==============
+#baris atas antenna sectoral
+pic = pr1.slides[7].shapes.add_picture(f'{path}/{ant[0]}', left, top, width, height)
+pic = pr1.slides[7].shapes.add_picture(f'{path}/{ant[1]}', middle, top, width, height)
+pic = pr1.slides[7].shapes.add_picture(f'{path}/{ant[2]}', right, top, width, height)
+#baris bawah antenna lable
+pic = pr1.slides[7].shapes.add_picture(f'{path}/{lblant[0]}', left, bottom, width, height)
+pic = pr1.slides[7].shapes.add_picture(f'{path}/{lblant[1]}', middle, bottom, width, height)
+pic = pr1.slides[7].shapes.add_picture(f'{path}/{lblant[2]}', right, bottom, width, height)
+#========azimuth ==============
+#baris atas azimuth with compass
+pic = pr1.slides[8].shapes.add_picture(f'{path}/{azz_co[0]}', left, top, width, height)
+pic = pr1.slides[8].shapes.add_picture(f'{path}/{azz_co[1]}', middle, top, width, height)
+pic = pr1.slides[8].shapes.add_picture(f'{path}/{azz_co[2]}', right, top, width, height)
+#baris bawah azimuth without compass
+pic = pr1.slides[8].shapes.add_picture(f'{path}/{azz[0]}', left, bottom, width, height)
+pic = pr1.slides[8].shapes.add_picture(f'{path}/{azz[1]}', middle, bottom, width, height)
+pic = pr1.slides[8].shapes.add_picture(f'{path}/{azz[2]}', right, bottom, width, height)
+#========Mechanical and Electrical ==============
+#baris atas Mechanical
+pic = pr1.slides[9].shapes.add_picture(f'{path}/{mdt[0]}', left, top, width, height)
+pic = pr1.slides[9].shapes.add_picture(f'{path}/{mdt[1]}', middle, top, width, height)
+pic = pr1.slides[9].shapes.add_picture(f'{path}/{mdt[2]}', right, top, width, height)
+#baris bawah Electrical
+pic = pr1.slides[9].shapes.add_picture(f'{path}/{edt[0]}', left, bottom, width, height)
+pic = pr1.slides[9].shapes.add_picture(f'{path}/{edt[1]}', middle, bottom, width, height)
+pic = pr1.slides[9].shapes.add_picture(f'{path}/{edt[2]}', right, bottom, width, height)
+#========Antenna height ==============
+#baris atas heigh antenna
+pic = pr1.slides[10].shapes.add_picture(f'{path}/{h_ant[0]}', left, top, width, height)
+pic = pr1.slides[10].shapes.add_picture(f'{path}/{h_ant[1]}', middle, top, width, height)
+pic = pr1.slides[10].shapes.add_picture(f'{path}/{h_ant[2]}', right, top, width, height)
+#========Site Condition ==============
+width_f = Inches(3)
+height_f = Inches(5.27)
+#baris atas Mechanical
+pic = pr1.slides[11].shapes.add_picture(f'{path}/{site_con[0]}', left, top, width_f, height_f)
+pic = pr1.slides[11].shapes.add_picture(f'{path}/{site_con[1]}', middle, top, width, height)
+pic = pr1.slides[11].shapes.add_picture(f'{path}/{site_con[2]}', right, top, width, height)
+#baris bawah Electrical
+pic = pr1.slides[11].shapes.add_picture(f'{path}/{site_con[3]}', middle, bottom, width, height)
+pic = pr1.slides[11].shapes.add_picture(f'{path}/{site_con[4]}', right, bottom, width, height)
+
+pr1.save('Thm_Audit.pptx')
+os.startfile('Thm_Audit.pptx')
