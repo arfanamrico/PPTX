@@ -1,0 +1,133 @@
+import collections.abc
+from pptx import Presentation
+from pptx.util import Inches, Pt
+from pptx.enum.shapes import MSO_SHAPE
+import os
+
+pr1 = Presentation('Thm_Audit.pptx')
+#=====google earth======
+img = 'panoramic #N0165_0701R (1).jpeg'
+width = Inches(6.67)
+height = Inches(5.43)
+left = Inches(0.28)
+top = Inches(1.03)
+pic = pr1.slides[3].shapes.add_picture(img, left, top, width, height)
+#========panoramic 0 30 60 90 120 150 ==============
+img = 'panoramic #N0165_0701R (1).jpeg'
+left = Inches(0.33)
+top = Inches(1.23)
+middle = Inches(3.5)
+bottom = Inches(4.08)
+right = Inches(6.67)
+width = Inches(3)
+height = Inches(2.42)
+#baris atas
+pic = pr1.slides[5].shapes.add_picture(img, left, top, width, height)
+pic = pr1.slides[5].shapes.add_picture(img, middle, top, width, height)
+pic = pr1.slides[5].shapes.add_picture(img, right, top, width, height)
+#baris bawah
+pic = pr1.slides[5].shapes.add_picture(img, left, bottom, width, height)
+pic = pr1.slides[5].shapes.add_picture(img, middle, bottom, width, height)
+pic = pr1.slides[5].shapes.add_picture(img, right, bottom, width, height)
+#========panoramic 180 210 240 270 300 330 ==============
+img = 'panoramic #N0165_0701R (1).jpeg'
+left = Inches(0.33)
+top = Inches(1.23)
+middle = Inches(3.5)
+bottom = Inches(4.08)
+right = Inches(6.67)
+width = Inches(3)
+height = Inches(2.42)
+#baris atas
+pic = pr1.slides[6].shapes.add_picture(img, left, top, width, height)
+pic = pr1.slides[6].shapes.add_picture(img, middle, top, width, height)
+pic = pr1.slides[6].shapes.add_picture(img, right, top, width, height)
+#baris bawah
+pic = pr1.slides[6].shapes.add_picture(img, left, bottom, width, height)
+pic = pr1.slides[6].shapes.add_picture(img, middle, bottom, width, height)
+pic = pr1.slides[6].shapes.add_picture(img, right, bottom, width, height)
+#========antenna dan antenna lable ==============
+img = 'panoramic #N0165_0701R (1).jpeg'
+left = Inches(0.33)
+top = Inches(1.23)
+middle = Inches(3.5)
+bottom = Inches(4.08)
+right = Inches(6.67)
+width = Inches(3)
+height = Inches(2.42)
+#baris atas antenna sectoral
+pic = pr1.slides[7].shapes.add_picture(img, left, top, width, height)
+pic = pr1.slides[7].shapes.add_picture(img, middle, top, width, height)
+pic = pr1.slides[7].shapes.add_picture(img, right, top, width, height)
+#baris bawah antenna lable
+pic = pr1.slides[7].shapes.add_picture(img, left, bottom, width, height)
+pic = pr1.slides[7].shapes.add_picture(img, middle, bottom, width, height)
+pic = pr1.slides[7].shapes.add_picture(img, right, bottom, width, height)
+#========azimuth ==============
+img = 'panoramic #N0165_0701R (1).jpeg'
+left = Inches(0.33)
+top = Inches(1.23)
+middle = Inches(3.5)
+bottom = Inches(4.08)
+right = Inches(6.67)
+width = Inches(3)
+height = Inches(2.42)
+#baris atas azimuth with compass
+pic = pr1.slides[8].shapes.add_picture(img, left, top, width, height)
+pic = pr1.slides[8].shapes.add_picture(img, middle, top, width, height)
+pic = pr1.slides[8].shapes.add_picture(img, right, top, width, height)
+#baris bawah azimuth without compass
+pic = pr1.slides[8].shapes.add_picture(img, left, bottom, width, height)
+pic = pr1.slides[8].shapes.add_picture(img, middle, bottom, width, height)
+pic = pr1.slides[8].shapes.add_picture(img, right, bottom, width, height)
+#========Mechanical and Electrical ==============
+img = 'panoramic #N0165_0701R (1).jpeg'
+left = Inches(0.33)
+top = Inches(1.23)
+middle = Inches(3.5)
+bottom = Inches(4.08)
+right = Inches(6.67)
+width = Inches(3)
+height = Inches(2.42)
+#baris atas Mechanical
+pic = pr1.slides[9].shapes.add_picture(img, left, top, width, height)
+pic = pr1.slides[9].shapes.add_picture(img, middle, top, width, height)
+pic = pr1.slides[9].shapes.add_picture(img, right, top, width, height)
+#baris bawah Electrical
+pic = pr1.slides[9].shapes.add_picture(img, left, bottom, width, height)
+pic = pr1.slides[9].shapes.add_picture(img, middle, bottom, width, height)
+pic = pr1.slides[9].shapes.add_picture(img, right, bottom, width, height)
+#========Antenna height ==============
+img = 'panoramic #N0165_0701R (1).jpeg'
+left = Inches(0.33)
+top = Inches(1.23)
+middle = Inches(3.5)
+bottom = Inches(4.08)
+right = Inches(6.67)
+width = Inches(3)
+height = Inches(2.42)
+#baris atas heigh antenna
+pic = pr1.slides[10].shapes.add_picture(img, left, top, width, height)
+pic = pr1.slides[10].shapes.add_picture(img, middle, top, width, height)
+pic = pr1.slides[10].shapes.add_picture(img, right, top, width, height)
+#========Site Condition ==============
+img = 'panoramic #N0165_0701R (1).jpeg'
+left = Inches(0.33)
+top = Inches(1.23)
+middle = Inches(3.5)
+bottom = Inches(4.08)
+right = Inches(6.67)
+width = Inches(3)
+width_f = Inches(3)
+height_f = Inches(5.27)
+height = Inches(2.42)
+#baris atas Mechanical
+pic = pr1.slides[11].shapes.add_picture(img, left, top, width_f, height_f)
+pic = pr1.slides[11].shapes.add_picture(img, middle, top, width, height)
+pic = pr1.slides[11].shapes.add_picture(img, right, top, width, height)
+#baris bawah Electrical
+pic = pr1.slides[11].shapes.add_picture(img, middle, bottom, width, height)
+pic = pr1.slides[11].shapes.add_picture(img, right, bottom, width, height)
+
+pr1.save('Thm_Audit.pptx')
+os.startfile('Thm_Audit.pptx')
