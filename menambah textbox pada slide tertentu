@@ -1,0 +1,2 @@
+tb = slide3.shapes.add_textbox(left,top,width,height)
+tb.text = 'ini adalah tempat text'
