@@ -1,0 +1,12 @@
+import collections.abc
+from pptx import Presentation
+from pptx.util import Inches, Pt
+from pptx.enum.shapes import MSO_SHAPE
+from pptx.dml.color import RGBColor
+import os
+
+pr1 = Presentation('test.pptx')
+for i in range(len(pr1.slides)):
+    print(f'slide {i}')
+    for shape in pr1.slides[i].shapes: 
+        print('\t',(shape.name))
