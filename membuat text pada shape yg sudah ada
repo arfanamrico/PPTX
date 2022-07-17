@@ -1,0 +1,16 @@
+import collections.abc
+from pptx import Presentation
+from pptx.util import Inches, Pt
+from pptx.enum.shapes import MSO_SHAPE
+from pptx.dml.color import RGBColor
+import os
+
+pr1 = Presentation('test.pptx')
+for i in range(len(pr1.slides)):
+    print(f'slide {i}')
+    for shape in pr1.slides[i].shapes: 
+        print('\t',(shape.name))
+pr1.slides[0].shapes[4].text = 'coba ini'
+pr1.slides[0].shapes[5].text = 'satu lagi'
+pr1.save('test.pptx')
+os.startfile('test.pptx')
