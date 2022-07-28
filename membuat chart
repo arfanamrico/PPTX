@@ -1,0 +1,28 @@
+import collections.abc
+from pptx import Presentation
+from pptx.util import Inches, Pt
+from pptx.enum.shapes import MSO_SHAPE
+from pptx.enum.text import PP_ALIGN
+from pptx.chart.data import ChartData
+from pptx.enum.chart import XL_CHART_TYPE, XL_LEGEND_POSITION, XL_LABEL_POSITION
+from pptx.dml.color import RGBColor
+
+left = Inches(1)
+top = Inches(2)
+width = Inches(6)
+height = Inches(5)
+
+chart_data = ChartData()
+chart_data.categories = ['A','B','C','D','E']
+chart_data.add_series('percentage', (0.15, 0.4, 0.25, 0.05, 0.15))
+
+chart_shape = slide1.shapes.add_chart(XL_CHART_TYPE.PIE, left, top, width, height,chart_data).chart
+
+chart_shape.has_legend = True
+chart_shape.legend.position = XL_LEGEND_POSITION.TOP
+chart_shape.legend.include_in_layout = False
+
+chart_shape.plots[0].has_data_labels = True
+data_labels = chart_shape.plots[0].data_labels
+data_labes.number_format = '0%'
+data_labels.position = XL_LABEL_POSITION.OUTSIDE_END
