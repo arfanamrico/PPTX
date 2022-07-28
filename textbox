@@ -1,0 +1,26 @@
+import collections.abc
+from pptx import Presentation
+from pptx.util import Inches, Pt
+from pptx.dml.color import RGBColor
+
+left = Inches(1)
+top = Inches(2)
+width = Inches(6)
+height = Inches(3)
+
+tb = slide1.shapes.add_textbox(left,top,width,height)
+tf = tb.text_frame
+
+p_0 = tf.paragraphs[0]
+run_p_0 = p_0.add_run()
+run_p_0.text = 'ini paragraph pertama'
+font_p_0 = run_p_0.font
+font_p_0.size = pt(20)
+font_p_0.name = 'arial'
+font_p_0.bold = True
+font_p_0.color.rgb = RGBcolor(255,0,0)
+
+p_1 = tf.paragraphs[1]
+run_p_1 = p_1.add_run()
+run_p_1.text = 'ini paragraph Kedua'
+run_p_1.hyperlink.address = 'www.google.com'
