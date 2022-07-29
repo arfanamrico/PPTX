@@ -15,7 +15,6 @@ site_id = str(ws['C2'].value) #harus di ubah ke text/string
 site_name = ws['F3'].value
 tg_l = str(ws['C7'].value) #harus di ubah ke text/string
 tgl = tg_l.split(' ')[0]
-print(site_id, site_name, tgl)
 
 pr1.slides[0].shapes[8].text = site_id
 pr1.slides[0].shapes[9].text = site_name
@@ -29,6 +28,127 @@ height = Inches(5.43)
 left = Inches(0.28)
 top = Inches(1.03)
 pic = pr1.slides[3].shapes.add_picture(img, left, top, width, height)
+
+#=====tabel database ===============
+#menyimpan isi cell tabel kedalam list
+theader = []
+row_1 = []
+row_2 = []
+row_3 = []
+
+for index, huruf in enumerate('FGHIJKLMNOPQ'):
+        theader.append(str(ws[f'{huruf}1'].value))
+        row_1.append(str(ws[f'{huruf}2'].value))
+        row_2.append(str(ws[f'{huruf}3'].value))
+        row_3.append(str(ws[f'{huruf}4'].value))
+ 
+num_rows = 4
+num_cols = 12
+tleft = Inches(0.76)
+ttop = Inches(2.25)
+tbotom = Inches(5.1)
+twidth = Inches(11.44)
+theight = Inches(1.47)
+#========table atas============================
+shape_table = pr1.slides[4].shapes.add_table(num_rows, num_cols,tleft,ttop,twidth,theight).table
+#shape_table.rows[0].height = Inches(0.5)
+shape_table.columns[0].width = Inches(1.5)
+shape_table.columns[1].width = Inches(2)
+shape_table.columns[2].width = Inches(1)
+shape_table.columns[3].width = Inches(1)
+for c in range(4,12):
+    shape_table.columns[c].width = Inches(0.7)    
+
+#mengisi nilai header table pada slide
+for i in range(len(theader)):
+    cell = shape_table.cell(0,i)
+    tf_cell = cell.text_frame
+    p_cell = tf_cell.add_paragraph()
+    run_cell = p_cell.add_run()
+    run_cell.text = theader[i]
+    run_cell.font.size = Pt(12)
+    p_cell.alignment = PP_ALIGN.CENTER
+
+#mengisi nilai Row1 table pada slide
+for i in range(len(row_1)):
+    cell = shape_table.cell(1,i)
+    tf_cell = cell.text_frame
+    p_cell = tf_cell.add_paragraph()
+    run_cell = p_cell.add_run()
+    run_cell.text = row_1[i]
+    run_cell.font.size = Pt(10)
+    p_cell.alignment = PP_ALIGN.CENTER
+
+#mengisi nilai Row2 table pada slide
+for i in range(len(row_2)):
+    cell = shape_table.cell(2,i)
+    tf_cell = cell.text_frame
+    p_cell = tf_cell.add_paragraph()
+    run_cell = p_cell.add_run()
+    run_cell.text = row_2[i]
+    run_cell.font.size = Pt(10)
+    p_cell.alignment = PP_ALIGN.CENTER
+
+#mengisi nilai Row3 table pada slide
+for i in range(len(row_3)):
+    cell = shape_table.cell(3,i)
+    tf_cell = cell.text_frame
+    p_cell = tf_cell.add_paragraph()
+    run_cell = p_cell.add_run()
+    run_cell.text = row_3[i]
+    run_cell.font.size = Pt(10)
+    p_cell.alignment = PP_ALIGN.CENTER
+
+#=============table bawah=============================
+shape_table = pr1.slides[4].shapes.add_table(num_rows, num_cols,tleft,tbotom,twidth,theight).table
+#shape_table.rows[0].height = Inches(0.5)
+shape_table.columns[0].width = Inches(1.5)
+shape_table.columns[1].width = Inches(2)
+shape_table.columns[2].width = Inches(1)
+shape_table.columns[3].width = Inches(1)
+for c in range(4,12):
+    shape_table.columns[c].width = Inches(0.7)    
+
+#mengisi nilai header table pada slide
+for i in range(len(theader)):
+    cell = shape_table.cell(0,i)
+    tf_cell = cell.text_frame
+    p_cell = tf_cell.add_paragraph()
+    run_cell = p_cell.add_run()
+    run_cell.text = theader[i]
+    run_cell.font.size = Pt(12)
+    p_cell.alignment = PP_ALIGN.CENTER
+
+#mengisi nilai Row1 table pada slide
+for i in range(len(row_1)):
+    cell = shape_table.cell(1,i)
+    tf_cell = cell.text_frame
+    p_cell = tf_cell.add_paragraph()
+    run_cell = p_cell.add_run()
+    run_cell.text = row_1[i]
+    run_cell.font.size = Pt(10)
+    p_cell.alignment = PP_ALIGN.CENTER
+
+#mengisi nilai Row2 table pada slide
+for i in range(len(row_2)):
+    cell = shape_table.cell(2,i)
+    tf_cell = cell.text_frame
+    p_cell = tf_cell.add_paragraph()
+    run_cell = p_cell.add_run()
+    run_cell.text = row_2[i]
+    run_cell.font.size = Pt(10)
+    p_cell.alignment = PP_ALIGN.CENTER
+
+#mengisi nilai Row3 table pada slide
+for i in range(len(row_3)):
+    cell = shape_table.cell(3,i)
+    tf_cell = cell.text_frame
+    p_cell = tf_cell.add_paragraph()
+    run_cell = p_cell.add_run()
+    run_cell.text = row_3[i]
+    run_cell.font.size = Pt(10)
+    p_cell.alignment = PP_ALIGN.CENTER
+
 #========panoramic 0 30 60 90 120 150 ==============
 img = 'panoramic #N0165_0701R (1).jpeg'
 left = Inches(0.33)
