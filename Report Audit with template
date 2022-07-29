@@ -5,6 +5,23 @@ from pptx.enum.shapes import MSO_SHAPE
 import os
 
 pr1 = Presentation('Thm_Audit.pptx')
+
+#=====Judul=============
+file = r"E:\FOTO AUDIT_AOR\Rivai\GCI Mocn\03PDN0040 Pasar Ulak Karang\Data 03PDN0040.xlsx"
+wb = load_workbook(file)
+ws = wb.active
+
+site_id = str(ws['C2'].value) #harus di ubah ke text/string
+site_name = ws['F3'].value
+tg_l = str(ws['C7'].value) #harus di ubah ke text/string
+tgl = tg_l.split(' ')[0]
+print(site_id, site_name, tgl)
+
+pr1.slides[0].shapes[8].text = site_id
+pr1.slides[0].shapes[9].text = site_name
+pr1.slides[0].shapes[10].text = tgl
+pr1.slides[0].shapes[11].text = 'Central sumatera'
+
 #=====google earth======
 img = 'panoramic #N0165_0701R (1).jpeg'
 width = Inches(6.67)
