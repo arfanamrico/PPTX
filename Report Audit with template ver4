@@ -1,0 +1,380 @@
+import collections.abc
+from turtle import turtlesize
+from pptx import Presentation
+from pptx.util import Inches, Pt
+from pptx.enum.shapes import MSO_SHAPE
+from pptx.enum.text import PP_ALIGN
+from pptx.dml.color import RGBColor
+import os
+import datetime
+from tkinter.filedialog import *
+from openpyxl import load_workbook
+
+path = askdirectory()
+pr1 = Presentation('Thm_Audit.pptx')
+
+for name in os.listdir(path):
+    file = os.path.join(path, name)
+    if file.endswith('.xlsx') and os.path.isfile(file):
+        wb = load_workbook(file)
+        ws = wb.active
+
+#===Nama-nama foto============
+panoramic = ["0.jpg","30.jpg","60.jpg","90.jpg","120.jpg","150.jpg","180.jpg","210.jpg","240.jpg","270.jpg","300.jpg","330.jpg"]
+ant = ["Antenna SEC 1.jpg","Antenna SEC 2.jpg","Antenna SEC 3.jpg"]
+lblant = ["Antenna Label SEC 1.jpg","Antenna Label SEC 2.jpg","Antenna Label SEC 3.jpg"]
+azz = ["SEC 1 View No Compas.jpg","SEC 2 View No Compas.jpg","SEC 3 View No Compas.jpg"]
+azz_co = ["SEC 1 View.jpg","SEC 2 View.jpg","SEC 3 View.jpg"]
+mdt = ["M-Tilt SEC 1.jpg","M-Tilt SEC 2.jpg","M-Tilt SEC 3.jpg"]
+edt = ["E-Tilt SEC 1.jpg","E-Tilt SEC 2.jpg","E-Tilt SEC 3.jpg"]
+h_ant = ["High Ant Sec 1.jpg","High Ant Sec 2.jpg","High Ant Sec 3.jpg"]
+site_con = ["Site Far View.jpg","Site Near View.jpg","Equip Room.jpg","GPS.jpg","Feeder Inlet.jpg"]
+#===Posisition and Size picture ========
+left = Inches(0.33)
+top = Inches(1.23)
+middle = Inches(3.5)
+bottom = Inches(4.08)
+right = Inches(6.67)
+width = Inches(3)
+height = Inches(2.42)
+
+site_id = str(ws['C2'].value) #harus di ubah ke text/string
+site_name = ws['F3'].value
+tg_l = ws['C7'].value
+tgl = str(tg_l.strftime(f'%A, %B %d, %Y'))
+print(site_id, site_name, tgl)
+
+#===========Slide1/judul=================
+leftj = Inches(0.25)
+topj = Inches(1.5)
+widthj = Inches(9.75)
+heightj = Inches(3)
+tb = pr1.slides[0].shapes.add_textbox(leftj,topj,widthj,heightj)
+#tb.text = "Site ID : 32332"
+tf = tb.text_frame
+p_0 = tf.paragraphs[0]
+run_p_0 = p_0.add_run()
+run_p_0.text = f"Site ID \t\t: {site_id}"
+font_p_0 = run_p_0.font
+font_p_0.size = Pt(24)
+font_p_0.name = 'arial'
+font_p_0.bold = True
+font_p_0.color.rgb = RGBColor(192,0,0)
+
+p_1 = tf.add_paragraph()
+run_p_1 = p_1.add_run()
+run_p_1.text = f"Site Name \t\t: {site_name}" 
+font_p_1 = run_p_1.font
+font_p_1.size = Pt(24)
+font_p_1.name = 'arial'
+font_p_1.bold = True
+font_p_1.color.rgb = RGBColor(192,0,0)
+
+p_2 = tf.add_paragraph()
+run_p_2 = p_2.add_run()
+run_p_2.text = ""
+
+p_3 = tf.add_paragraph()
+run_p_3 = p_3.add_run()
+run_p_3.text = "Region \t\t: Central Sumatera"
+font_p_3 = run_p_3.font
+font_p_3.size = Pt(24)
+font_p_3.name = 'arial'
+font_p_3.bold = True
+font_p_3.color.rgb = RGBColor(192,0,0)
+
+p_4 = tf.add_paragraph()
+run_p_4 = p_4.add_run()
+run_p_4.text = f"Last Update \t: {tgl}"
+font_p_4 = run_p_4.font
+font_p_4.size = Pt(24)
+font_p_4.name = 'arial'
+font_p_4.bold = True
+font_p_4.color.rgb = RGBColor(192,0,0)
+
+#=====google earth======
+nama = "Google Earth.jpg"
+img = f'{path}/{nama}'
+widthg = Inches(6.67)
+heightg = Inches(5.43)
+leftg = Inches(0.28)
+topg = Inches(1.03)
+try:
+    if nama in os.listdir(path): pic = pr1.slides[3].shapes.add_picture(img, leftg, topg, widthg, heightg)
+except:
+    pass
+#========untuk mengatur tulisan pada textbox slide 9,10,11======
+def tulis ():
+    tf = tb.text_frame
+    p_0 = tf.paragraphs[0]
+    run_p_0 = p_0.add_run()
+    run_p_0.text = tulisan
+    font_p_0 = run_p_0.font
+    font_p_0.size = Pt(16)
+    p_0.alignment = PP_ALIGN.CENTER
+    font_p_0.name = 'arial'
+    font_p_0.bold = True
+    font_p_0.color.rgb = RGBColor(192,0,0)
+#==========tabel=======================
+#menyimpan isi cell tabel kedalam list
+theader = []
+row_1 = []
+row_2 = []
+row_3 = []
+row_8 = []
+row_9 = []
+row_10 = []
+
+for index, huruf in enumerate('FGHIJKLMNOPQ'):
+        theader.append(str(ws[f'{huruf}1'].value))
+        row_1.append(str(ws[f'{huruf}2'].value))
+        row_2.append(str(ws[f'{huruf}3'].value))
+        row_3.append(str(ws[f'{huruf}4'].value))
+        row_8.append(str(ws[f'{huruf}8'].value))
+        row_9.append(str(ws[f'{huruf}9'].value))
+        row_10.append(str(ws[f'{huruf}10'].value))
+'''
+num_rows = 4
+num_cols = 12
+tleft = Inches(0.63)
+ttop = Inches(2.19)
+tbotom = Inches(5.07)
+twidth = Inches(8.75)
+theight = Inches(1.62)
+#table atas============================
+shape_table = pr1.slides[4].shapes.add_table(num_rows, num_cols,tleft,ttop,twidth,theight).table
+#shape_table.rows[0].height = Inches(0.5)
+shape_table.columns[0].width = Inches(1.5)
+shape_table.columns[1].width = Inches(2)
+shape_table.columns[2].width = Inches(1)
+shape_table.columns[3].width = Inches(1)
+for c in range(4,12):
+    shape_table.columns[c].width = Inches(0.7)    
+
+#mengisi nilai header table pada slide
+for i in range(len(theader)):
+    cell = shape_table.cell(0,i)
+    tf_cell = cell.text_frame
+    p_cell = tf_cell.add_paragraph()
+    run_cell = p_cell.add_run()
+    run_cell.text = theader[i]
+    run_cell.font.size = Pt(8)
+    p_cell.alignment = PP_ALIGN.CENTER
+
+#mengisi nilai Row1 table pada slide
+for i in range(len(row_1)):
+    cell = shape_table.cell(1,i)
+    tf_cell = cell.text_frame
+    p_cell = tf_cell.add_paragraph()
+    run_cell = p_cell.add_run()
+    run_cell.text = row_1[i]
+    run_cell.font.size = Pt(8)
+    p_cell.alignment = PP_ALIGN.CENTER
+
+#mengisi nilai Row2 table pada slide
+for i in range(len(row_2)):
+    cell = shape_table.cell(2,i)
+    tf_cell = cell.text_frame
+    p_cell = tf_cell.add_paragraph()
+    run_cell = p_cell.add_run()
+    run_cell.text = row_2[i]
+    run_cell.font.size = Pt(8)
+    p_cell.alignment = PP_ALIGN.CENTER
+
+#mengisi nilai Row3 table pada slide
+for i in range(len(row_3)):
+    cell = shape_table.cell(3,i)
+    tf_cell = cell.text_frame
+    p_cell = tf_cell.add_paragraph()
+    run_cell = p_cell.add_run()
+    run_cell.text = row_3[i]
+    run_cell.font.size = Pt(8)
+    p_cell.alignment = PP_ALIGN.CENTER
+
+#table bawah=============================
+shape_table = pr1.slides[1].shapes.add_table(num_rows, num_cols,tleft,tbotom,twidth,theight).table
+#shape_table.rows[0].height = Inches(0.5)
+shape_table.columns[0].width = Inches(1.5)
+shape_table.columns[1].width = Inches(2)
+shape_table.columns[2].width = Inches(1)
+shape_table.columns[3].width = Inches(1)
+for c in range(4,12):
+    shape_table.columns[c].width = Inches(0.7)    
+
+#mengisi nilai header table pada slide
+for i in range(len(theader)):
+    cell = shape_table.cell(0,i)
+    tf_cell = cell.text_frame
+    p_cell = tf_cell.add_paragraph()
+    run_cell = p_cell.add_run()
+    run_cell.text = theader[i]
+    run_cell.font.size = Pt(8)
+    p_cell.alignment = PP_ALIGN.CENTER
+
+#mengisi nilai Row1 table pada slide
+for i in range(len(row_1)):
+    cell = shape_table.cell(1,i)
+    tf_cell = cell.text_frame
+    p_cell = tf_cell.add_paragraph()
+    run_cell = p_cell.add_run()
+    run_cell.text = row_8[i]
+    run_cell.font.size = Pt(8)
+    p_cell.alignment = PP_ALIGN.CENTER
+
+#mengisi nilai Row2 table pada slide
+for i in range(len(row_2)):
+    cell = shape_table.cell(2,i)
+    tf_cell = cell.text_frame
+    p_cell = tf_cell.add_paragraph()
+    run_cell = p_cell.add_run()
+    run_cell.text = row_9[i]
+    run_cell.font.size = Pt(8)
+    p_cell.alignment = PP_ALIGN.CENTER
+
+#mengisi nilai Row3 table pada slide
+for i in range(len(row_3)):
+    cell = shape_table.cell(3,i)
+    tf_cell = cell.text_frame
+    p_cell = tf_cell.add_paragraph()
+    run_cell = p_cell.add_run()
+    run_cell.text = row_10[i]
+    run_cell.font.size = Pt(8)
+    p_cell.alignment = PP_ALIGN.CENTER
+'''
+#========panoramic 0 30 60 90 120 150 ==============
+for i in panoramic:
+    try:
+        #baris atas
+        if i in os.listdir(path) and i == panoramic[0]: pic = pr1.slides[5].shapes.add_picture(f'{path}/{panoramic[0]}', left, top, width, height)
+        if i in os.listdir(path) and i == panoramic[1]: pic = pr1.slides[5].shapes.add_picture(f'{path}/{panoramic[1]}', middle, top, width, height)
+        if i in os.listdir(path) and i == panoramic[2]: pic = pr1.slides[5].shapes.add_picture(f'{path}/{panoramic[2]}', right, top, width, height)
+        #baris bawah
+        if i in os.listdir(path) and i == panoramic[3]: pic = pr1.slides[5].shapes.add_picture(f'{path}/{panoramic[3]}', left, bottom, width, height)
+        if i in os.listdir(path) and i == panoramic[4]: pic = pr1.slides[5].shapes.add_picture(f'{path}/{panoramic[4]}', middle, bottom, width, height)
+        if i in os.listdir(path) and i == panoramic[5]: pic = pr1.slides[5].shapes.add_picture(f'{path}/{panoramic[5]}', right, bottom, width, height)
+#========panoramic 180 210 240 270 300 330 ==============
+        #baris atas
+        if i in os.listdir(path) and i == panoramic[6]: pic = pr1.slides[6].shapes.add_picture(f'{path}/{panoramic[6]}', left, top, width, height)
+        if i in os.listdir(path) and i == panoramic[7]: pic = pr1.slides[6].shapes.add_picture(f'{path}/{panoramic[7]}', middle, top, width, height)
+        if i in os.listdir(path) and i == panoramic[8]: pic = pr1.slides[6].shapes.add_picture(f'{path}/{panoramic[8]}', right, top, width, height)
+        #baris bawah
+        if i in os.listdir(path) and i == panoramic[9]: pic = pr1.slides[6].shapes.add_picture(f'{path}/{panoramic[9]}', left, bottom, width, height)
+        if i in os.listdir(path) and i == panoramic[10]: pic = pr1.slides[6].shapes.add_picture(f'{path}/{panoramic[10]}', middle, bottom, width, height)
+        if i in os.listdir(path) and i == panoramic[11]: pic = pr1.slides[6].shapes.add_picture(f'{path}/{panoramic[11]}', right, bottom, width, height)
+    except:
+        pass
+#========antenna dan antenna lable ==============
+#baris atas antenna sectoral
+for i in ant:
+    try:
+        if i in os.listdir(path) and i == ant[0]: pic = pr1.slides[7].shapes.add_picture(f'{path}/{ant[0]}', left, top, width, height)
+        if i in os.listdir(path) and i == ant[1]: pic = pr1.slides[7].shapes.add_picture(f'{path}/{ant[1]}', middle, top, width, height)
+        if i in os.listdir(path) and i == ant[2]: pic = pr1.slides[7].shapes.add_picture(f'{path}/{ant[2]}', right, top, width, height)
+    except:
+        pass
+#baris bawah antenna lable
+for i in lblant:
+    try:
+        if i in os.listdir(path) and i == lblant[0]: pic = pr1.slides[7].shapes.add_picture(f'{path}/{lblant[0]}', left, bottom, width, height)
+        if i in os.listdir(path) and i == lblant[1]: pic = pr1.slides[7].shapes.add_picture(f'{path}/{lblant[1]}', middle, bottom, width, height)
+        if i in os.listdir(path) and i == lblant[2]: pic = pr1.slides[7].shapes.add_picture(f'{path}/{lblant[2]}', right, bottom, width, height)
+    except:
+        pass
+#========azimuth ==============
+tb = pr1.slides[8].shapes[7]
+tulisan = f'SEC 1 View : {row_1[4]}'
+tulis()
+tb = pr1.slides[8].shapes[8]
+tulisan = f'SEC 2 View : {row_2[4]}'
+tulis()
+tb = pr1.slides[8].shapes[9]
+tulisan = f'SEC 3 View : {row_3[4]}'
+tulis()
+for i in azz_co:
+    try:
+        #baris atas azimuth with compass
+        if i in os.listdir(path) and i == azz_co[0]: pic = pr1.slides[8].shapes.add_picture(f'{path}/{azz_co[0]}', left, top, width, height)
+        if i in os.listdir(path) and i == azz_co[1]: pic = pr1.slides[8].shapes.add_picture(f'{path}/{azz_co[1]}', middle, top, width, height)
+        if i in os.listdir(path) and i == azz_co[1]: pic = pr1.slides[8].shapes.add_picture(f'{path}/{azz_co[2]}', right, top, width, height)
+    except:
+        pass
+for i in azz:
+    try:
+        #baris bawah azimuth without compass
+        if i in os.listdir(path) and i == azz[0]: pic = pr1.slides[8].shapes.add_picture(f'{path}/{azz[0]}', left, bottom, width, height)
+        if i in os.listdir(path) and i == azz[1]: pic = pr1.slides[8].shapes.add_picture(f'{path}/{azz[1]}', middle, bottom, width, height)
+        if i in os.listdir(path) and i == azz[2]: pic = pr1.slides[8].shapes.add_picture(f'{path}/{azz[2]}', right, bottom, width, height)
+    except:
+        pass
+#========Mechanical and Electrical ==============
+tb = pr1.slides[9].shapes[7]
+tulisan = f'M-Tilt SEC 1 : {row_1[6]}'
+tulis()
+tb = pr1.slides[9].shapes[8]
+tulisan = f'M-Tilt SEC 2 : {row_2[6]}'
+tulis()
+tb = pr1.slides[9].shapes[9]
+tulisan = f'M-Tilt SEC 3 : {row_3[6]}'
+tulis()
+tb = pr1.slides[9].shapes[10]
+tulisan = f'E-Tilt SEC 1 : {row_1[7]}'
+tulis()
+tb = pr1.slides[9].shapes[11]
+tulisan = f'E-Tilt SEC 2 : {row_2[7]}'
+tulis()
+tb = pr1.slides[9].shapes[12]
+tulisan = f'E-Tilt SEC 3 : {row_3[7]}'
+tulis()
+for i in mdt:
+    try:
+        #baris atas Mechanical
+        if i in os.listdir(path) and i == mdt[0]: pic = pr1.slides[9].shapes.add_picture(f'{path}/{mdt[0]}', left, top, width, height)
+        if i in os.listdir(path) and i == mdt[1]: pic = pr1.slides[9].shapes.add_picture(f'{path}/{mdt[1]}', middle, top, width, height)
+        if i in os.listdir(path) and i == mdt[2]: pic = pr1.slides[9].shapes.add_picture(f'{path}/{mdt[2]}', right, top, width, height)
+    except:
+        pass
+for i in edt:
+    try:
+        #baris bawah Electrical    
+        if i in os.listdir(path) and i == edt[0]: pic = pr1.slides[9].shapes.add_picture(f'{path}/{edt[0]}', left, bottom, width, height)
+        if i in os.listdir(path) and i == edt[1]: pic = pr1.slides[9].shapes.add_picture(f'{path}/{edt[1]}', middle, bottom, width, height)
+        if i in os.listdir(path) and i == edt[2]: pic = pr1.slides[9].shapes.add_picture(f'{path}/{edt[2]}', right, bottom, width, height)
+    except:
+        pass
+#========Antenna height ==============
+tb = pr1.slides[10].shapes[4]
+tulisan = f'High SEC 1 : {row_1[5]}'
+tulis()
+tb = pr1.slides[10].shapes[5]
+tulisan = f'High SEC 2 : {row_2[5]}'
+tulis()
+tb = pr1.slides[10].shapes[6]
+tulisan = f'High SEC 3 : {row_3[5]}'
+tulis()
+#baris atas heigh antenna
+for i in h_ant:
+    try:
+        if i in os.listdir(path) and i == h_ant[0]: pic = pr1.slides[10].shapes.add_picture(f'{path}/{h_ant[0]}', left, top, width, height)
+        if i in os.listdir(path) and i == h_ant[1]: pic = pr1.slides[10].shapes.add_picture(f'{path}/{h_ant[1]}', middle, top, width, height)
+        if i in os.listdir(path) and i == h_ant[2]: pic = pr1.slides[10].shapes.add_picture(f'{path}/{h_ant[2]}', right, top, width, height)
+    except:
+        pass
+#========Site Condition ==============
+width_f = Inches(3)
+height_f = Inches(5.27)
+#untuk mengabaikan bila ada gambar yg kosong
+for i in site_con:
+    try:
+        if i in os.listdir(path) and i == site_con[0]: pic = pr1.slides[11].shapes.add_picture(f'{path}/{site_con[0]}', left, top, width_f, height_f)
+        if i in os.listdir(path) and i == site_con[1]: pic = pr1.slides[11].shapes.add_picture(f'{path}/{site_con[1]}', middle, top, width, height)
+        if i in os.listdir(path) and i == site_con[2]: pic = pr1.slides[11].shapes.add_picture(f'{path}/{site_con[2]}', right, top, width, height)
+        if i in os.listdir(path) and i == site_con[3]: pic = pr1.slides[11].shapes.add_picture(f'{path}/{site_con[3]}', middle, bottom, width, height)
+        if i in os.listdir(path) and i == site_con[4]: pic = pr1.slides[11].shapes.add_picture(f'{path}/{site_con[4]}', right, bottom, width, height)
+    except:
+        pass
+
+namareport = f'{site_id}_{site_name}_{tg_l.strftime("%Y%m%d")}.pptx'
+#namareport = f'{site_id}_{site_name}_{tgl}.pptx'
+pr1.save(f'{path}/{namareport}')
+os.startfile(f'{path}/{namareport}')
+
