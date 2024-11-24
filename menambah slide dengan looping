@@ -1,0 +1,29 @@
+import collections.abc
+from pptx import Presentation
+from pptx.util import Inches, Pt
+from pptx.enum.shapes import MSO_SHAPE
+import os
+import time
+start_time = time.time()
+
+img = r"D:\Document\gbr mewarnai\gambar-mewarnai-mudah2.jpg"
+image_folder = r'D:\Document\gbr mewarnai'  # Replace with the path to your image folder
+pr1 = Presentation()
+
+layout = pr1.slide_layouts[6] #memilih jenis layout yg tersedia yaitu 0 sampai seterus nya
+top,left,width,heigh = Inches(0.22),Inches(0),Inches(10),Inches(7.06),
+n = 0
+for name in os.listdir(image_folder):
+    try:
+      path = os.path.join(image_folder, name)    
+      if path.endswith('.jpg') and os.path.isfile(path):
+        slide = pr1.slides.add_slide(layout)
+        slide.shapes.add_picture(path, left, top, width=width, height=heigh)  # Adjust position/size as needed
+        n += 1
+    except:pass
+
+pr1.save(f'{image_folder}/test.pptx') #menyimpan dan memberi nama file pptx
+os.startfile(f'{image_folder}/test.pptx') #membuka file pptx
+end_time = time.time()
+print (f'Execution time:{end_time-start_time} seconds')
+print('*'*10,'Copyright(C) Arfan Amrico','*'*10)
